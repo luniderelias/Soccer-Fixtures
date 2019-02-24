@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Soccer Fixtures</string>
+
+    <string name="not_connected">Not Connected</string>
+    <string name="connection_failed">Connection Failed</string>
+    <string name="try_again">Try Again</string>
+    <string name="connect">Conect</string>
+    <string name="postponed">Postponed</string>
+    <string name="filter_by_competition">Filter by Competition</string>
+
+    <string name="venue_date_example">Stamford Bridge | Sep 12,2017 at 20:00</string>
+    <string name="competition_example">CHAMPIONS LEAGUE</string>
+    <string name="host_team_example">Chelsea FC</string>
+    <string name="away_team_example">Qarabag</string>
+    <string name="month_year_example">September 2019</string>
+
+
+
+    <array name="weekdays">
+        <item>sun</item>
+        <item>mon</item>
+        <item>tue</item>
+        <item>wed</item>
+        <item>thu</item>
+        <item>fri</item>
+        <item>sat</item>
+    </array>
+
+    <array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+</resources>

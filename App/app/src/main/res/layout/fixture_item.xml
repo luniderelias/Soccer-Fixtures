@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="0dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/competitionName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="2"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/competition_example" />
+
+            <TextView
+                android:id="@+id/postponed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="@string/postponed"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/venueAndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/date_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:text="@string/venue_date_example" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/hostShield"
+            android:layout_width="@dimen/shield_size"
+            android:layout_height="@dimen/shield_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_chelsea"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/venueAndDate" />
+
+        <TextView
+            android:id="@+id/hostName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1"
+            android:textSize="@dimen/custom_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/hostShield"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toEndOf="@+id/hostShield"
+            app:layout_constraintTop_toTopOf="@+id/hostShield"
+            tools:text="@string/host_team_example" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/awayShield"
+            android:layout_width="@dimen/shield_size"
+            android:layout_height="@dimen/shield_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/qarabag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hostShield" />
+
+
+        <TextView
+            android:id="@+id/awayName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1"
+            android:textSize="@dimen/custom_text_size"            app:layout_constraintBottom_toBottomOf="@+id/awayShield"
+            app:layout_constraintEnd_toStartOf="@+id/weekday"
+            app:layout_constraintStart_toEndOf="@+id/awayShield"
+            app:layout_constraintTop_toTopOf="@+id/awayShield"
+            tools:text="@string/away_team_example" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@+id/awayShield"
+            app:layout_constraintEnd_toStartOf="@+id/weekday"
+            app:layout_constraintTop_toTopOf="@+id/hostShield">
+
+        </View>
+
+        <TextView
+            android:id="@+id/weekday"
+            android:layout_width="@dimen/weekday_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textSize="@dimen/title_size"
+            android:typeface="monospace"
+            app:layout_constraintBottom_toBottomOf="@+id/awayShield"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hostShield"
+            tools:text="12\nTUE" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
