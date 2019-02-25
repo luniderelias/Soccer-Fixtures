@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -56,8 +59,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
         holder.hostName.setText(result.homeTeam.name);
         holder.awayName.setText(result.awayTeam.name);
         holder.venueAndDate.setText(getDateString(result));
-        holder.hostShield.setImageDrawable(context.getDrawable(getShield(result.homeTeam.id)));
-        holder.awayShield.setImageDrawable(context.getDrawable(getShield(result.awayTeam.id)));
+        Glide.with(context).load(getShield(result.homeTeam.id)).into(holder.hostShield);
+        Glide.with(context).load(getShield(result.awayTeam.id)).into(holder.awayShield);
         holder.homeScore.setText(String.valueOf(result.score.home));
         holder.awayScore.setText(String.valueOf(result.score.away));
 

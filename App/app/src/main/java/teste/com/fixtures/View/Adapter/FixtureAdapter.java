@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,9 +43,9 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fixture_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fixture_item, parent, false);
 
-        return new ViewHolder(view);
+            return new ViewHolder(view);
     }
 
     @Override
@@ -62,8 +64,8 @@ public class FixtureAdapter extends RecyclerView.Adapter<FixtureAdapter.ViewHold
         holder.awayName.setText(fixture.awayTeam.name);
         holder.venueAndDate.setText(Html.fromHtml(getDateString(fixture,holder)));
         holder.weekday.setText(getWeekday(fixture));
-        Picasso.get().load(getShield(fixture.homeTeam.id)).placeholder(R.drawable.ic_soccerball).into(holder.hostShield);
-        Picasso.get().load(getShield(fixture.awayTeam.id)).placeholder(R.drawable.ic_soccerball).into(holder.awayShield);
+        Glide.with(context).load(getShield(fixture.homeTeam.id)).into(holder.hostShield);
+        Glide.with(context).load(getShield(fixture.awayTeam.id)).into(holder.awayShield);
     }
 
     public String getDateString(Fixture fixture, ViewHolder holder) {

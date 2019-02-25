@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:text="@string/venue_date_example" />
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/hostShield"
             android:layout_width="@dimen/shield_size"
             android:layout_height="@dimen/shield_size"
@@ -94,7 +94,8 @@
             tools:text="@string/host_team_example" />
 
 
-        <android.support.v7.widget.AppCompatImageView
+
+        <ImageView
             android:id="@+id/awayShield"
             android:layout_width="@dimen/shield_size"
             android:layout_height="@dimen/shield_size"
@@ -117,7 +118,8 @@
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
-            android:textSize="@dimen/custom_text_size"            app:layout_constraintBottom_toBottomOf="@+id/awayShield"
+            android:textSize="@dimen/custom_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/awayShield"
             app:layout_constraintEnd_toStartOf="@+id/weekday"
             app:layout_constraintStart_toEndOf="@+id/awayShield"
             app:layout_constraintTop_toTopOf="@+id/awayShield"
