@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import teste.com.fixtures.View.Fragment.FixturesFragment_;
-import teste.com.fixtures.View.Fragment.ResultsFragment_;
+import teste.com.fixtures.View.Fixtures.FixturesFragment;
+import teste.com.fixtures.View.Results.ResultsFragment;
+
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -21,9 +22,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FixturesFragment_();
+                return new FixturesFragment();
             case 1:
-                return new ResultsFragment_();
+                return new ResultsFragment();
             default:
                 return null;
         }

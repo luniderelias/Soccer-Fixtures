@@ -1,4 +1,4 @@
-package teste.com.fixtures.View.Adapter;
+package teste.com.fixtures.View.Results;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,30 +10,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import teste.com.fixtures.Model.Result;
+import teste.com.fixtures.Presenter.FixtureAdapter.FixtureAdapterPresenter;
+import teste.com.fixtures.Presenter.FixtureAdapter.IFixtureAdapterPresenter;
 import teste.com.fixtures.R;
+import teste.com.fixtures.Util.Cache;
 import teste.com.fixtures.Util.DateUtil;
 
 import static teste.com.fixtures.Util.DrawableUtil.getShield;
 
-public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
+public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> implements IResultAdapterView{
 
-    private List<Result> results = new ArrayList<>();
     private Context context;
+    private IFixtureAdapterPresenter fixtureAdapterPresenter;
+    private Result result;
+    private ViewHolder viewHolder;
 
-    public ResultAdapter(Context context, List<Result> results) {
-        this.results.addAll(results);
+    public ResultAdapter(Context context) {
+        fixtureAdapterPresenter = new FixtureAdapterPresenter();
         this.context = context;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
     }
 
     @NonNull
@@ -46,42 +46,50 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return Cache.getResults().size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setIsRecyclable(false);
+        viewHolder = holder;
+        viewHolder.setIsRecyclable(false);
+        result = Cache.getResults().get(position);
 
-        Result result = results.get(position);
+        setResultsTexts();
+        setWinnerText();
+        setShields();
+    }
 
-        holder.competitionName.setText(result.competitionStage.competition.name);
-        holder.hostName.setText(result.homeTeam.name);
-        holder.awayName.setText(result.awayTeam.name);
-        holder.venueAndDate.setText(getDateString(result));
-        Glide.with(context).load(getShield(result.homeTeam.id)).into(holder.hostShield);
-        Glide.with(context).load(getShield(result.awayTeam.id)).into(holder.awayShield);
-        holder.homeScore.setText(String.valueOf(result.score.home));
-        holder.awayScore.setText(String.valueOf(result.score.away));
+    @Override
+    public void setResultsTexts(){
+        viewHolder.competitionName.setText(result.competitionStage.competition.name);
+        viewHolder.hostName.setText(result.homeTeam.name);
+        viewHolder.awayName.setText(result.awayTeam.name);
+        viewHolder.venueAndDate.setText(fixtureAdapterPresenter.getResultDateString(result));
+        viewHolder.homeScore.setText(String.valueOf(result.score.home));
+        viewHolder.awayScore.setText(String.valueOf(result.score.away));
+    }
 
+    @Override
+    public void setWinnerText(){
         if (result.score.home > result.score.away)
-            holder.homeScore.setTextColor(context.getResources().getColor(R.color.dark_blue));
+            viewHolder.homeScore.setTextColor(context.getResources().getColor(R.color.dark_blue));
         if (result.score.away > result.score.home)
-            holder.awayScore.setTextColor(context.getResources().getColor(R.color.dark_blue));
+            viewHolder.awayScore.setTextColor(context.getResources().getColor(R.color.dark_blue));
     }
 
-    public String getDateString(Result result) {
-        String date = DateUtil.getModifiedDate(Locale.getDefault(), result.date.getTime());
-        return result.venue.name + " | " + date;
+    @Override
+    public void setShields(){
+        Glide.with(context).load(getShield(result.homeTeam.id)).into(viewHolder.hostShield);
+        Glide.with(context).load(getShield(result.awayTeam.id)).into(viewHolder.awayShield);
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView hostShield, awayShield;
         private final TextView competitionName, venueAndDate, hostName, awayName, homeScore, awayScore;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
 
             hostShield = itemView.findViewById(R.id.hostShield);

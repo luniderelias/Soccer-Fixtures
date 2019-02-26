@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Fragment.FixturesFragment">
+    tools:context=".View.Fixtures.FixturesFragment">
 
     <TextView
         android:id="@+id/monthYear"
